@@ -1,0 +1,16 @@
+.Container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7fafc;
+}
+
+.Sidebar {
+  background-color: #fff;
+  width: 20%;
+  height: 100vh;
+  position: fixed;
+  border-right: 2px solid #dae6f0;
+  padding: 3em 2em;
+}

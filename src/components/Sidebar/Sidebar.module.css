@@ -1,0 +1,29 @@
+.Sidebar {
+  color: #80829e;
+}
+
+.Logo {
+  font-size: 1.5em;
+  margin-bottom: 3em;
+}
+
+.Logout {
+  font-size: .7em;
+}
+
+.Navigation {
+  font-size: 18px;
+}
+
+.Item {
+  margin-block: .5em;
+  padding: .5em 1em;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.Item:hover {
+  background-color: #edf3fe;
+  color: #528afa;
+}

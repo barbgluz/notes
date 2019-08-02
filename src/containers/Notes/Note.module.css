@@ -1,0 +1,84 @@
+.Content {
+  margin-block: 2em;
+  width: 70%;
+}
+
+.Description {
+  margin-block: 1em;
+  font-size: 1.2em;
+  color: #828397;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 1em;
+  min-width: 265px;
+  max-width: 765px;
+}
+
+.Label {
+  position: absolute;
+  margin: 1em;
+  transition: 0.2s ease all;
+  color: #a4a2ad;
+}
+
+.Input:focus ~ .Label,
+.Input:valid ~ .Label,
+.Input:not(:empty) ~ .Label
+.Textarea:focus ~ .Label,
+.Textarea:valid ~ .Label,
+.Textarea:not(:empty) ~ .Label
+{
+  margin-top: -2em;
+  color: #528afa;
+}
+
+.Input:focus, .Textarea:focus {
+  border: solid 2px #528afa;
+}
+
+.Input, .Textarea {
+  padding: 12px 1em;
+  border-radius: 2em;
+  border: solid 2px #dce6ee;
+  transition: 0.2s ease all;
+  margin-bottom: 2em;
+}
+
+.Textarea {
+  resize: none;
+}
+
+.Btn {
+  cursor: pointer;
+  padding: 1em 2em;
+  width: 80%;
+  border-radius: 5em;
+  background-color: #528afa;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@media screen and (max-width: 1280px) {
+  .Content {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .InputGroup {
+    width: 100%;
+    margin: 0;
+  }
+}

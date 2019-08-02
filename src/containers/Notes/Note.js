@@ -10,7 +10,7 @@ class Note extends Component {
       <div>
         <div className={classes.Title}>
           <h1>Note Title</h1>
-          <button>Edit</button>
+          <button className={classes.Btn}>Edit</button>
         </div>
 
         <div className={styles.Content}>

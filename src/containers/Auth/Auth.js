@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Login from './Login/Login';
+import Signup from './Signup/Signup';
 
 import classes from './Auth.module.css';
 
@@ -11,12 +12,10 @@ class Auth extends Component {
   }
 
   render() {
-    let form = (
-      <Login />
-    );
+    let form = <Login />;
 
     if(this.props.form === "signup") {
-      form = "signup form";
+      form = <Signup />;
     }
 
     return(

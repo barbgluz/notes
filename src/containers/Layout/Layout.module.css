@@ -1,3 +1,25 @@
+.Title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Title > h1 {
+  font-size: 2em;
+  color: #272838;
+}
+
+.Title > button {
+  background-color: #528afa;
+  color: #fff;
+  text-align: center;
+  padding: 15px 25px;
+  border-radius: 2em;
+  min-width: 123px;
+}
+
+.Content {
+  margin-block: 3em;
+}
 .Container {
   display: flex;
   flex-wrap: wrap;

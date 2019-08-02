@@ -2,7 +2,7 @@ import React from 'react';
 
 import Notebooks from '../../containers/Notebooks/Notebooks';
 
-import classes from './Home.module.css';
+import classes from '../../containers/Layout/Layout.module.css';
 
 const home = (props) => {
 
@@ -13,7 +13,7 @@ const home = (props) => {
         <button>New Note</button>
       </div>
 
-      <div className={classes.Notebooks}>
+      <div className={classes.Content}>
         <Notebooks />
       </div>
     </div>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 import Auth from '../Auth/Auth';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -11,10 +13,6 @@ import classes from './Layout.module.css';
 
 class Layout extends Component {
 
-  state = {
-    isAuthenticated: false
-  }
-
   render() {
     let view = (
       <div>
@@ -23,7 +21,7 @@ class Layout extends Component {
       </div>
     );
 
-    if(this.state.isAuthenticated) {
+    if(this.props.isAuthenticated) {
       view = (
         <div className={classes.Container}>
           <div className={classes.Sidebar}>
@@ -31,9 +29,9 @@ class Layout extends Component {
           </div>
 
           <div className={classes.MainContent}>
-            <Route path="/" exact component={Home} />
             <Route path="/note/new" exact component={NewNote} />
             <Route path="/note" exact component={Note} />
+            <Route path="/" component={Home} />
           </div>
         </div>
       );
@@ -44,7 +42,13 @@ class Layout extends Component {
         {view}
       </BrowserRouter>
       );
-}
+  }
 }
 
-export default Layout;
+const mapStateToProps = state => {
+  return {
+        isAuthenticated: state.auth.token !== null
+  };
+}
+
+export default connect(mapStateToProps)(Layout);

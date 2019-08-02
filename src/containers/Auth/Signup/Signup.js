@@ -10,12 +10,13 @@ class Signup extends Component {
       <div className={classes.Signup}>
         <h1 className={classes.FormTitle}>Signup</h1>
 
-        <form className={classes.Form}>
+        <form className={classes.Form} id="signupForm">
           <div className={classes.InputGroup + " InputGroup"}>
             <input
               className="Input"
               type="text"
               id="name"
+              onChange={this.props.changed}
               required />
             <label className="Label" htmlFor="name">Name</label>
           </div>
@@ -25,6 +26,7 @@ class Signup extends Component {
               className="Input"
               type="text"
               id="email"
+              onChange={this.props.changed}
               required />
             <label className="Label" htmlFor="email">Email</label>
           </div>
@@ -34,6 +36,7 @@ class Signup extends Component {
               className="Input"
               type="password"
               id="password"
+              onChange={this.props.changed}
               required />
             <label className="Label" htmlFor="password">Password</label>
           </div>
@@ -42,12 +45,15 @@ class Signup extends Component {
             <input
               className="Input"
               type="password"
-              id="passwordContifm"
+              id="passwordConfirm"
+              onChange={this.props.changed}
               required />
-            <label className="Label" htmlFor="password">Confirm Password</label>
+            <label className="Label" htmlFor="passwordConfirm">Confirm Password</label>
           </div>
 
-          <button className={classes.Btn + " Btn"}>Signup</button>
+          <button
+            className={classes.Btn + " Btn"}
+            onClick={this.props.submit}>Signup</button>
         </form>
 
         <div className={classes.Footer}>

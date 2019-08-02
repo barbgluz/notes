@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Home from '../../components/Home/Home';
 
 import classes from './Layout.module.css';
 
@@ -14,6 +15,7 @@ class Layout extends Component {
         </div>
 
         <div className={classes.MainContent}>
+          <Home />
         </div>
       </div>
       );

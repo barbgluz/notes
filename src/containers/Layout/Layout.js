@@ -18,8 +18,8 @@ class Layout extends Component {
   render() {
     let view = (
       <div>
+        <Route path="/" exact render={()=> <Auth form="login" />} />
         <Route path="/signup" exact render={()=> <Auth form="signup" />} />
-        <Route path="/" render={()=> <Auth form="login" />} />
       </div>
     );
 

@@ -39,5 +39,47 @@ export const auth = (email, password) => {
         dispatch(authFail(err));
       })
   };
+};
 
+export const signupStart = () => {
+  return {
+    type: actionTypes.SIGNUP_START
+  };
+};
+
+export const signupSuccess = () => {
+  return {
+    type: actionTypes.SIGNUP_SUCCESS
+  };
+};
+
+export const signupFail = (error) => {
+  return {
+    type: actionTypes.SIGNUP_FAIL,
+    error: error
+  };
+};
+
+export const signup = (name, email, password, passwordConfirm) => {
+  return dispatch => {
+    dispatch(signupStart());
+
+    const signupData = {
+      name: name,
+      email: email,
+      password: password,
+      password_confirmation: passwordConfirm
+    }
+    console.log("ICI")
+    console.log(signupData)
+
+    API.post('/signup', signupData)
+      .then( response => {
+        dispatch(signupSuccess())
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(signupFail(err));
+      })
+  };
 };

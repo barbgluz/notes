@@ -42,7 +42,16 @@ class Auth extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onAuth(this.state.loginForm.email, this.state.loginForm.password);
+    let form = event.target.form.id;
+
+    if(form === "signupForm") {
+      this.props.onSignup(this.state.signupForm.name,
+                          this.state.signupForm.email,
+                          this.state.signupForm.password,
+                          this.state.signupForm.passwordConfirm);
+    } else if( form === "loginForm" ) {
+      this.props.onAuth(this.state.loginForm.email, this.state.loginForm.password);
+    }
   }
 
   render() {
@@ -51,7 +60,9 @@ class Auth extends Component {
                   submit={this.handleSubmit}/>);
 
     if(this.props.form === "signup") {
-      form = <Signup />;
+      form = (<Signup
+                changed={this.handleChange}
+                submit={this.handleSubmit}/>);
     }
 
     let authRedirect = null;
@@ -76,7 +87,8 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password))
+        onAuth: (email, password) => dispatch(actions.auth(email, password)),
+        onSignup: (name, email, password, passwordConfirm) => dispatch(actions.signup(name, email, password, passwordConfirm))
   };
 };
 

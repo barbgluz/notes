@@ -1,4 +1,5 @@
 export {
-    auth
+    auth,
+    signup
 } from './auth';
 

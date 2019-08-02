@@ -17,7 +17,10 @@ class Layout extends Component {
 
   render() {
     let view = (
-      <Auth />
+      <div>
+        <Route path="/signup" exact render={()=> <Auth form="signup" />} />
+        <Route path="/" render={()=> <Auth form="login" />} />
+      </div>
     );
 
     if(this.state.isAuthenticated) {

@@ -27,3 +27,32 @@
   background-color: #edf3fe;
   color: #528afa;
 }
+
+@media screen and (max-width: 1000px) {
+  .Sidebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Logo {
+    margin-bottom: 0;
+  }
+
+  .Navigation > ul {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Logout {
+    display: none;
+  }
+
+  .Navigation {
+    font-size: 16px;
+  }
+
+}

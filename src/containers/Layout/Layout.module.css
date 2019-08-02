@@ -19,3 +19,25 @@
   width: 80%;
   padding: 5em;
 }
+
+@media screen and (max-width: 1000px) {
+  .Container {
+    flex-direction: column;
+  }
+
+  .Sidebar {
+    height: 100%;
+    width: 100%;
+    padding: 1em 2em;
+  }
+
+  .MainContent {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .MainContent {
+    padding: 3em;
+  }
+}

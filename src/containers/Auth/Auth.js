@@ -49,6 +49,7 @@ class Auth extends Component {
                           this.state.signupForm.email,
                           this.state.signupForm.password,
                           this.state.signupForm.passwordConfirm);
+      this.props.onAuth(this.state.signupForm.email, this.state.signupForm.password);
     } else if( form === "loginForm" ) {
       this.props.onAuth(this.state.loginForm.email, this.state.loginForm.password);
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import Login from './Login/Login';
@@ -53,12 +54,18 @@ class Auth extends Component {
       form = <Signup />;
     }
 
+    let authRedirect = null;
+    if(this.props.isAuthenticated) {
+      authRedirect = <Redirect to="/" />
+    }
+
     return(
       <div className={classes.Container}>
         <div className={classes.Box}>
           <div className={classes.ImgContainer}>
           </div>
           <div className={classes.FormContainer}>
+            {authRedirect}
             {form}
           </div>
         </div>

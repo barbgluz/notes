@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
+import Auth from '../Auth/Auth';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Home from '../../components/Home/Home';
 import Note from '../Notes/Note';
@@ -15,7 +16,9 @@ class Layout extends Component {
   }
 
   render() {
-    let view = null;
+    let view = (
+      <Auth />
+    );
 
     if(this.state.isAuthenticated) {
       view = (

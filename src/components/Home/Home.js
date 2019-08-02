@@ -10,7 +10,8 @@ const home = (props) => {
     <div className={classes.Home}>
       <div className={classes.Title}>
         <h1>Home</h1>
-        <button>New Note</button>
+
+        <button className={classes.Btn}>New Note</button>
       </div>
 
       <div className={classes.Content}>

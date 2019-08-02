@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../../../styles/form.css';
 import classes from '../Auth.module.css';
@@ -32,7 +33,7 @@ class Login extends Component {
         </form>
 
         <div className={classes.Footer}>
-          <p>Not a member yet? <a href="#">Sign In</a> </p>
+          <p>Not a member yet? <Link to="/signup">Sign Up</Link> </p>
         </div>
       </div>
     );

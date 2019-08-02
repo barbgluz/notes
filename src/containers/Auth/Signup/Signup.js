@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../../../styles/form.css';
 import classes from '../Auth.module.css';
@@ -50,7 +51,7 @@ class Signup extends Component {
         </form>
 
         <div className={classes.Footer}>
-          <p>Already a member? <a href="#">Log In</a> </p>
+          <p>Already a member? <Link to="/">Log In</Link> </p>
         </div>
       </div>
     );

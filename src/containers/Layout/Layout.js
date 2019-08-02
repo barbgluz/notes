@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
+import Auth from '../Auth/Auth';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Home from '../../components/Home/Home';
 import Note from '../Notes/Note';
@@ -10,9 +11,20 @@ import classes from './Layout.module.css';
 
 class Layout extends Component {
 
+  state = {
+    isAuthenticated: false
+  }
+
   render() {
-    return (
-      <BrowserRouter>
+    let view = (
+      <div>
+        <Route path="/" exact render={()=> <Auth form="login" />} />
+        <Route path="/signup" exact render={()=> <Auth form="signup" />} />
+      </div>
+    );
+
+    if(this.state.isAuthenticated) {
+      view = (
         <div className={classes.Container}>
           <div className={classes.Sidebar}>
             <Sidebar />
@@ -24,6 +36,12 @@ class Layout extends Component {
             <Route path="/note" exact component={Note} />
           </div>
         </div>
+      );
+    }
+
+    return (
+      <BrowserRouter>
+        {view}
       </BrowserRouter>
       );
 }

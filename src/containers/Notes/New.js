@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import classes from '../../containers/Layout/Layout.module.css';
-import styles from './Note.module.css';
+import '../../styles/form.css';
 
 class Notes extends Component {
 
@@ -12,28 +12,28 @@ class Notes extends Component {
           <h1>New Note</h1>
         </div>
 
-        <div className={styles.Content}>
-          <form className={styles.Form}>
-            <div className={styles.InputGroup}>
+        <div className="Content">
+          <form className="Form">
+            <div className="InputGroup">
               <input
-                className={styles.Input}
+                className="Input"
                 type="text"
                 id="title"
                 required />
-              <label className={styles.Label} htmlFor="title">Title</label>
+              <label className="Label" htmlFor="title">Title</label>
             </div>
 
-            <div className={styles.InputGroup}>
+            <div className="InputGroup">
               <textarea
-                className={styles.Textarea}
+                className="Textarea"
                 id="description"
                 name="description"
                 cols="30" rows="10"
                 required></textarea>
-              <label className={styles.Label} htmlFor="description">Description</label>
+              <label className="Label" htmlFor="description">Description</label>
             </div>
 
-            <button className={styles.Btn}>Save</button>
+            <button className="Btn">Save</button>
 
           </form>
         </div>

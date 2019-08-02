@@ -20,6 +20,7 @@ class Layout extends Component {
 
           <div className={classes.MainContent}>
             <Route path="/" exact component={Home} />
+            <Route path="/note/new" exact component={NewNote} />
             <Route path="/note" exact component={Note} />
           </div>
         </div>

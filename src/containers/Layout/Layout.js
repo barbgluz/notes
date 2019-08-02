@@ -10,9 +10,15 @@ import classes from './Layout.module.css';
 
 class Layout extends Component {
 
+  state = {
+    isAuthenticated: false
+  }
+
   render() {
-    return (
-      <BrowserRouter>
+    let view = null;
+
+    if(this.state.isAuthenticated) {
+      view = (
         <div className={classes.Container}>
           <div className={classes.Sidebar}>
             <Sidebar />
@@ -24,6 +30,12 @@ class Layout extends Component {
             <Route path="/note" exact component={Note} />
           </div>
         </div>
+      );
+    }
+
+    return (
+      <BrowserRouter>
+        {view}
       </BrowserRouter>
       );
 }

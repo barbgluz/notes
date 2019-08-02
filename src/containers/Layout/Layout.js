@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Home from '../../components/Home/Home';
 import Note from '../Notes/Note';
+import NewNote from '../Notes/New';
 
 import classes from './Layout.module.css';
 

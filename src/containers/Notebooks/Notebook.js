@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
+import NoteItem from '../../components/NoteItem/NoteItem';
+
+import classes from '../Notebooks/Notebooks.module.css';
+
 class Notebook extends Component {
 
   constructor(props) {
@@ -23,14 +27,18 @@ class Notebook extends Component {
     if(this.props.notebook) {
       notes = this.props.notebook.map(notebook => {
         return(
-          <div>title={notebook.name} key={notebook.id} id={notebook.id} </div>
+          <NoteItem
+            title={notebook.title}
+            key={notebook.id}
+            description={notebook.description}
+            date={notebook.created_at}
+            id={notebook.id} />
         )
       })
     }
 
     return(
-      <div>
-        Notebook
+      <div className={classes.Notebooks}>
         {notes}
       </div>
     );

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
 import Auth from '../Auth/Auth';
+import Logout from '../Auth/Logout/Logout';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Home from '../../components/Home/Home';
 import Note from '../Notes/Note';
@@ -39,6 +40,7 @@ class Layout extends Component {
               <Route path="/note/new" exact component={NewNote} />
               <Route path="/note/:id" exact component={Note} />
               <Route path="/notebook/:id" exact component={Notebook} />
+              <Route path="/logout" exact component={Logout} />
               <Route path="/" exact component={Home} />
             </Switch>
           </main>

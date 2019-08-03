@@ -21,6 +21,26 @@ export const notebookFail = (error) => {
   };
 };
 
+const postNotebookStart = (state, action) => {
+  return {
+    type: actionTypes.POST_NOTEBOOK_START
+  };
+};
+
+const postNotebookSuccess = (state, action) => {
+  return {
+    type: actionTypes.POST_NOTEBOOK_SUCCESS
+  };
+};
+
+const postNotebookFail = (error) => {
+  return {
+    type: actionTypes.POST_NOTEBOOK_FAIL,
+    error: error
+  };
+}
+
+
 export const notebook = (token, id) => {
   return dispatch => {
     dispatch(notebookStart());
@@ -39,3 +59,27 @@ export const notebook = (token, id) => {
       })
   };
 };
+
+export const notebookPost = (title, token) => {
+  return dispatch => {
+    dispatch(postNotebookStart());
+
+    const notebookData = {
+      name: title
+    }
+
+    API.post('/notebooks', notebookData, {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    })
+      .then( response => {
+        dispatch(postNotebookSuccess())
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(postNotebookFail(err));
+      })
+  };
+};
+

@@ -7,6 +7,7 @@ import Auth from '../Auth/Auth';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Home from '../../components/Home/Home';
 import Note from '../Notes/Note';
+import Notebook from '../Notebooks/Notebook';
 import NewNote from '../Notes/New';
 
 import classes from './Layout.module.css';
@@ -31,7 +32,8 @@ class Layout extends Component {
           <div className={classes.MainContent}>
             <Route path="/note/new" exact component={NewNote} />
             <Route path="/note" exact component={Note} />
-            <Route path="/" component={Home} />
+            <Route path="/notebook/:id" exact component={Notebook} />
+            <Route path="/" exact component={Home} />
           </div>
         </div>
       );

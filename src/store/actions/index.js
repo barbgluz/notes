@@ -1,6 +1,7 @@
 export {
-    auth,
-    signup
+  auth,
+  signup,
+  authCheckState
 } from './auth';
 export {
   notebooks

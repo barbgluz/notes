@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 import Auth from '../Auth/Auth';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -12,6 +13,10 @@ import NewNote from '../Notes/New';
 import classes from './Layout.module.css';
 
 class Layout extends Component {
+
+  componentDidMount() {
+    this.props.onTryAutoSignup();
+  }
 
   render() {
     let view = (
@@ -55,4 +60,10 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps)(Layout);
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

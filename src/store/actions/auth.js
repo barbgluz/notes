@@ -32,7 +32,8 @@ export const auth = (email, password) => {
 
     API.post('/login', authData)
       .then( response => {
-        dispatch(authSuccess(response.data.access_token))
+        localStorage.setItem('token', response.data.access_token);
+        dispatch(authSuccess(response.data.access_token));
       })
       .catch(err => {
         console.log(err);
@@ -70,8 +71,6 @@ export const signup = (name, email, password, passwordConfirm) => {
       password: password,
       password_confirmation: passwordConfirm
     }
-    console.log("ICI")
-    console.log(signupData)
 
     API.post('/signup', signupData)
       .then( response => {
@@ -83,3 +82,12 @@ export const signup = (name, email, password, passwordConfirm) => {
       })
   };
 };
+
+export const authCheckState = () => {
+  return dispatch => {
+    const token = localStorage.getItem('token');
+    if(token) {
+      dispatch(authSuccess(token))
+    }
+  }
+}

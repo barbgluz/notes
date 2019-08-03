@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import NoteItem from '../../components/NoteItem/NoteItem';
@@ -15,7 +15,8 @@ class Notebook extends Component {
 
     this.state = {
       id: this.props.match.params.id,
-      notebookTitle: this.props.location.state.notebook_title
+      notebookTitle: this.props.location.state.notebook_title,
+      submitted: false
     }
 
 
@@ -28,6 +29,10 @@ class Notebook extends Component {
 
   deleteNotebook() {
     this.props.onDeleteNotebook(this.props.token, this.props.match.params.id);
+
+    if(this.props.submitted) {
+      this.setState({submitted: true});
+    }
   }
 
 
@@ -50,8 +55,14 @@ class Notebook extends Component {
       })
     }
 
+    let redirect = <Redirect to="/" />
+    if(!this.state.submitted) {
+      redirect = null;
+    }
+
     return(
       <div>
+        {redirect}
         <div className={classes.Title + " " + styles.Title}>
           <h1>{this.state.notebookTitle}</h1>
 
@@ -89,6 +100,7 @@ const mapStateToProps = state => {
   return {
     notebook: state.notebook.notes,
     token: state.auth.token,
+    submitted: state.note.submitted
   };
 }
 

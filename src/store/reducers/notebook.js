@@ -68,6 +68,7 @@ const removeNotebookStart = (state, action) => {
 const removeNotebookSuccess = (state, action) => {
   return updateObject(state, {
     error: null,
+    submitted: true
   });
 };
 

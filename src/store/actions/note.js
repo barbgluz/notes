@@ -21,6 +21,26 @@ export const noteFail = (error) => {
   };
 };
 
+const postNoteStart = (state, action) => {
+  return {
+    type: actionTypes.POST_NOTE_START
+  };
+};
+
+
+const postNoteSuccess = (state, action) => {
+  return {
+    type: actionTypes.POST_NOTE_SUCCESS
+  };
+};
+
+const postNoteFail = (error) => {
+  return {
+    type: actionTypes.POST_NOTE_FAIL,
+    error: error
+  };
+}
+
 export const note = (token, id) => {
   return dispatch => {
     dispatch(noteStart());
@@ -36,6 +56,31 @@ export const note = (token, id) => {
       .catch(err => {
         console.log(err);
         dispatch(noteFail(err));
+      })
+  };
+};
+
+export const post = (title, description, notebook_id, token) => {
+  return dispatch => {
+    dispatch(postNoteStart());
+
+    const noteData = {
+      title: title,
+      description: description,
+      notebooks_id: notebook_id
+    }
+
+    API.post('/notes', noteData, {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    })
+      .then( response => {
+        dispatch(postNoteSuccess())
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(postNoteFail(err));
       })
   };
 };

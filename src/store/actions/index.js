@@ -9,5 +9,6 @@ export {
   notebook
 } from './notebook';
 export {
-  note
+  note,
+  post
 } from './note';

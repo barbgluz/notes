@@ -59,6 +59,23 @@ const updateNoteFail = (state, action) => {
     });
   };
 
+const removeNoteStart = (state, action) => {
+  return updateObject(state, { error: null, loading: true  });
+};
+
+const removeNoteSuccess = (state, action) => {
+  return updateObject(state, {
+    error: null,
+  });
+};
+
+const removeNoteFail = (state, action) => {
+  return updateObject(state, {
+      error: action.error,
+      loading: false
+    });
+  };
+
   const reducer = (state = initialState, action) => {
     switch(action.type) {
       case actionTypes.FETCH_NOTE_START: return noteStart(state, action);
@@ -72,6 +89,10 @@ const updateNoteFail = (state, action) => {
       case actionTypes.UPDATE_NOTE_START: return updateNoteStart(state, action);
       case actionTypes.UPDATE_NOTE_SUCCESS: return updateNoteSuccess(state, action);
       case actionTypes.UPDATE_NOTE_FAIL: return updateNoteFail(state, action);
+
+      case actionTypes.REMOVE_NOTE_START: return removeNoteStart(state, action);
+      case actionTypes.REMOVE_NOTE_SUCCESS: return removeNoteSuccess(state, action);
+      case actionTypes.REMOVE_NOTE_FAIL: return removeNoteFail(state, action);
     default:
       return state;
   }

@@ -8,8 +8,18 @@ import styles from './Note.module.css';
 
 class Note extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.deleteNote = this.deleteNote.bind(this);
+  }
+
   componentDidMount() {
     this.props.onGetNote(this.props.token, this.props.match.params.id);
+  }
+
+  deleteNote() {
+    this.props.onDeleteNote(this.props.token, this.props.match.params.id);
   }
 
   render() {
@@ -28,6 +38,10 @@ class Note extends Component {
               }}>
               <button className={classes.Btn}>Edit</button>
             </Link>
+
+            <button
+              className={classes.Btn}
+              onClick={this.deleteNote}>Delete</button>
           </div>
 
           <div className={styles.Content}>
@@ -56,7 +70,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onGetNote: (token, id) => dispatch(actions.note(token, id))
+    onGetNote: (token, id) => dispatch(actions.note(token, id)),
+    onDeleteNote: (token, id) => dispatch(actions.remove(id, token)),
   };
 };
 

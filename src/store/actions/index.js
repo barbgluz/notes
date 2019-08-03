@@ -11,5 +11,6 @@ export {
 export {
   note,
   post,
-  update
+  update,
+  remove
 } from './note';

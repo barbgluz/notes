@@ -27,7 +27,6 @@ const postNoteStart = (state, action) => {
   };
 };
 
-
 const postNoteSuccess = (state, action) => {
   return {
     type: actionTypes.POST_NOTE_SUCCESS
@@ -55,6 +54,26 @@ const updateNoteSuccess = (state, action) => {
 };
 
 const updateNoteFail = (error) => {
+  return {
+    type: actionTypes.UPDATE_NOTE_FAIL,
+    error: error
+  };
+}
+
+const removeNoteStart = (state, action) => {
+  return {
+    type: actionTypes.UPDATE_NOTE_START
+  };
+};
+
+
+const removeNoteSuccess = (state, action) => {
+  return {
+    type: actionTypes.UPDATE_NOTE_SUCCESS
+  };
+};
+
+const removeNoteFail = (error) => {
   return {
     type: actionTypes.UPDATE_NOTE_FAIL,
     error: error
@@ -126,6 +145,25 @@ export const update = (id, title, description, notebook_id, token) => {
       .catch(err => {
         console.log(err);
         dispatch(updateNoteFail(err));
+      })
+  };
+};
+
+export const remove = (id, token) => {
+  return dispatch => {
+    dispatch(removeNoteStart());
+
+    API.delete(('/notes/' + id), {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    })
+      .then( response => {
+        dispatch(removeNoteSuccess())
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(removeNoteFail(err));
       })
   };
 };

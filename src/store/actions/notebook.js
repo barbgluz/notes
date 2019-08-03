@@ -60,6 +60,26 @@ const updateNotebookFail = (error) => {
   };
 }
 
+const removeNotebookStart = (state, action) => {
+  return {
+    type: actionTypes.REMOVE_NOTE_START
+  };
+};
+
+
+const removeNotebookSuccess = (state, action) => {
+  return {
+    type: actionTypes.REMOVE_NOTE_SUCCESS
+  };
+};
+
+const removeNotebookFail = (error) => {
+  return {
+    type: actionTypes.REMOVE_NOTE_FAIL,
+    error: error
+  };
+}
+
 
 export const notebook = (token, id) => {
   return dispatch => {
@@ -122,6 +142,25 @@ export const notebookUpdate = (id, title, token) => {
       .catch(err => {
         console.log(err);
         dispatch(updateNotebookFail(err));
+      })
+  };
+};
+
+export const notebookRemove = (id, token) => {
+  return dispatch => {
+    dispatch(removeNotebookStart());
+
+    API.delete(('/notebooks/' + id), {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    })
+      .then( response => {
+        dispatch(removeNotebookSuccess())
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(removeNotebookFail(err));
       })
   };
 };

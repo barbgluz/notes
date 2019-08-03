@@ -17,11 +17,18 @@ class Notebook extends Component {
       id: this.props.match.params.id,
       title: this.props.location.state.title
     }
+
+    this.deleteNotebook = this.deleteNotebook.bind(this);
   }
 
   componentDidMount() {
     this.props.onGetNotebook(this.props.token, this.props.match.params.id);
   }
+
+  deleteNotebook() {
+    this.props.onDeleteNotebook(this.props.token, this.props.match.params.id);
+  }
+
 
   render() {
 
@@ -60,7 +67,11 @@ class Notebook extends Component {
               }}>
               <button className={classes.Btn}>Edit</button>
             </Link>
-        </div>
+
+            <button
+              className={classes.Btn}
+              onClick={this.deleteNotebook}>Delete</button>
+          </div>
 
         <div className={classes.Notebooks}>
           {notes}
@@ -79,7 +90,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onGetNotebook: (token, id) => dispatch(actions.notebook(token, id))
+    onGetNotebook: (token, id) => dispatch(actions.notebook(token, id)),
+    onDeleteNotebook: (token, id) => dispatch(actions.notebookRemove(id, token))
   };
 };
 

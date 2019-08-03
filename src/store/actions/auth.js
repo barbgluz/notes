@@ -21,6 +21,14 @@ export const authFail = (error) => {
   };
 };
 
+export const logout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('expires_at');
+  return {
+    type: actionTypes.AUTH_LOGOUT
+  };
+};
+
 export const auth = (email, password) => {
   return dispatch => {
     dispatch(authStart());
@@ -33,6 +41,7 @@ export const auth = (email, password) => {
     API.post('/login', authData)
       .then( response => {
         localStorage.setItem('token', response.data.access_token);
+        localStorage.setItem('expires_at', response.data.expires_at);
         dispatch(authSuccess(response.data.access_token));
       })
       .catch(err => {
@@ -86,8 +95,16 @@ export const signup = (name, email, password, passwordConfirm) => {
 export const authCheckState = () => {
   return dispatch => {
     const token = localStorage.getItem('token');
-    if(token) {
-      dispatch(authSuccess(token))
+
+    if(!token) {
+      dispatch(logout());
+    } else {
+        const expirationDate = localStorage.getItem('expires_at');
+        if(expirationDate > new Date()) {
+          dispatch(logout());
+        } else {
+          dispatch(authSuccess(token));
+        }
     }
   }
 }

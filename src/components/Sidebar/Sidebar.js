@@ -9,7 +9,7 @@ const sidebar = (props) => {
     <div className={classes.Sidebar}>
       <div className={classes.Logo}>
         <p>NotesApp</p>
-        <p className={classes.Logout}>Logout</p>
+        <Link to="/logout" className={classes.Logout}>Logout</Link>
       </div>
 
       <nav className={classes.Navigation}>

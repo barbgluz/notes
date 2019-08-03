@@ -53,6 +53,13 @@ class Notebook extends Component {
             >
             <button className={styles.Btn}>New Note</button>
           </Link>
+
+            <Link to={{
+                      pathname: (this.props.match.params.id + "/edit"),
+                      state: { notebook: this.state }
+              }}>
+              <button className={classes.Btn}>Edit</button>
+            </Link>
         </div>
 
         <div className={classes.Notebooks}>

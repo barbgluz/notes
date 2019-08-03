@@ -9,6 +9,10 @@
   color: #828397;
 }
 
+.Description > p {
+  white-space: pre-line;
+}
+
 @media screen and (max-width: 1280px) {
   .Content {
     width: 100%;

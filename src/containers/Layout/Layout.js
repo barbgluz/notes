@@ -10,6 +10,7 @@ import Home from '../../components/Home/Home';
 import Note from '../Notes/Note';
 import Notebook from '../Notebooks/Notebook';
 import NewNote from '../Notes/New';
+import NewNotebook from '../Notebooks/New';
 
 import classes from './Layout.module.css';
 
@@ -38,6 +39,8 @@ class Layout extends Component {
             <Switch>
               <Route path="/note/:id/edit" exact component={NewNote} />
               <Route path="/note/new" exact component={NewNote} />
+              <Route path="/notebook/:id/edit" exact component={NewNotebook} />
+              <Route path="/notebook/new" exact component={NewNotebook} />
               <Route path="/note/:id" exact component={Note} />
               <Route path="/notebook/:id" exact component={Notebook} />
               <Route path="/logout" exact component={Logout} />

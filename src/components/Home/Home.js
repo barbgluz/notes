@@ -12,7 +12,7 @@ const home = (props) => {
       <div className={classes.Title}>
         <h1>Home</h1>
 
-        <Link to="note/new">
+        <Link to="notebook/new">
           <button className={classes.Btn}>New Notebook</button>
         </Link>
       </div>

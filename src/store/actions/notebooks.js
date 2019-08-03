@@ -31,8 +31,6 @@ export const notebooks = (token) => {
       }
     })
       .then( response => {
-        console.log('[action/notebook.js] get notebooks')
-        console.log(response.data.data)
         dispatch(notebooksSuccess(response.data.data))
       })
       .catch(err => {

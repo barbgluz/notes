@@ -5,3 +5,6 @@ export {
 export {
   notebooks
 } from './notebooks';
+export {
+  notebook
+} from './notebook';

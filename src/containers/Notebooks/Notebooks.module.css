@@ -3,3 +3,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.Title > h1 {
+  font-size: 2em;
+  color: #272838;
+  margin-bottom: 1em;
+}

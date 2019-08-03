@@ -12,7 +12,8 @@ class Notebook extends Component {
     super(props);
 
     this.state = {
-      id: this.props.match.params.id
+      id: this.props.match.params.id,
+      title: this.props.location.state.title
     }
   }
 
@@ -33,15 +34,20 @@ class Notebook extends Component {
             description={notebook.description}
             date={notebook.created_at}
             id={notebook.id} />
-        )
+          )
       })
     }
 
     return(
-      <div className={classes.Notebooks}>
-        {notes}
+      <div>
+        <div className={classes.Title}>
+          <h1>{this.state.title}</h1>
+        </div>
+        <div className={classes.Notebooks}>
+          {notes}
+        </div>
       </div>
-    );
+      );
   }
 }
 

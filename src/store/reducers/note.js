@@ -70,6 +70,7 @@ const removeNoteStart = (state, action) => {
 const removeNoteSuccess = (state, action) => {
   return updateObject(state, {
     error: null,
+    submitted: true
   });
 };
 

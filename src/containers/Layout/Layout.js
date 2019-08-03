@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
 
 import Auth from '../Auth/Auth';
 import Sidebar from '../../components/Sidebar/Sidebar';

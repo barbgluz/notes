@@ -20,7 +20,7 @@ class Notebooks extends Component {
     if(this.props.notebooks) {
       notebooks = this.props.notebooks.map(notebook => {
         return(
-          <NotebookItem title={notebook.name} key={notebook.id} id={notebook.id}/>
+          <NotebookItem notebook_title={notebook.name} key={notebook.id} id={notebook.id}/>
         )
       })
     }

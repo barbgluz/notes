@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import classes from '../../containers/Layout/Layout.module.css';
@@ -20,7 +21,13 @@ class Note extends Component {
         <div>
           <div className={classes.Title}>
             <h1>{this.props.note.title}</h1>
-            <button className={classes.Btn}>Edit</button>
+            <Link to={{
+                      pathname: (this.props.match.params.id + "/edit"),
+                      state: { notebook_id: this.props.location.state.notebook_id,
+                               note: this.props.note }
+              }}>
+              <button className={classes.Btn}>Edit</button>
+            </Link>
           </div>
 
           <div className={styles.Content}>

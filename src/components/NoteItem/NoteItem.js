@@ -12,7 +12,12 @@ const noteItem = (props) => {
 
   return(
     <div className={classes.NotebookItem + ' ' + styles.Item }>
-      <Link to={"/note/" + props.id}><h3 className={classes.Title + ' ' + styles.Title }>{props.title}</h3></Link>
+      <Link to={{
+                pathname:"/note/" + props.id,
+                state: { notebook_id: props.notebook_id }
+                }}>
+        <h3 className={classes.Title + ' ' + styles.Title }>{props.title}</h3>
+      </Link>
       <hr className={styles.Line} />
       <p className={classes.Notes + ' ' + styles.Description}>{props.description}</p>
       <div className={styles.Footer}>

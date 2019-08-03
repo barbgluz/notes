@@ -10,5 +10,6 @@ export {
 } from './notebook';
 export {
   note,
-  post
+  post,
+  update
 } from './note';

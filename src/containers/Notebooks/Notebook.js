@@ -35,6 +35,7 @@ class Notebook extends Component {
             key={notebook.id}
             description={notebook.description}
             date={notebook.created_at}
+            notebook_id={this.state.id}
             id={notebook.id} />
           )
       })

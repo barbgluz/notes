@@ -14,21 +14,41 @@ class Note extends Component {
       noteForm: {
         title: "",
         description: "",
-        notebook_id: this.props.location.state.notebook_id
+        notebook_id: this.props.location.state.notebook_id,
+        id: null
       }
     }
+
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if(this.props.location.state.note) {
+      let note = {
+        ...this.props.location.state.note,
+        notebook_id: this.props.location.state.notebook_id
+      }
+      this.setState({noteForm: note});
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
-    this.props.onNewNote(this.state.noteForm.title,
-                         this.state.noteForm.description,
-                         this.state.noteForm.notebook_id,
-                         this.props.token);
+    if(!this.state.noteForm.id) {
+      this.props.onNewNote(this.state.noteForm.title,
+                           this.state.noteForm.description,
+                           this.state.noteForm.notebook_id,
+                           this.props.token);
+    } else {
+      this.props.onUpdateNote(this.state.noteForm.id,
+                              this.state.noteForm.title,
+                              this.state.noteForm.description,
+                              this.state.noteForm.notebook_id,
+                              this.props.token);
+    }
   }
 
   handleChange(event) {
@@ -55,6 +75,7 @@ class Note extends Component {
                 type="text"
                 id="title"
                 onChange={this.handleChange}
+                value={this.state.noteForm.title}
                 required />
               <label className="Label" htmlFor="title">Title</label>
             </div>
@@ -66,6 +87,7 @@ class Note extends Component {
                 name="description"
                 onChange={this.handleChange}
                 cols="30" rows="10"
+                value={this.state.noteForm.description}
                 required></textarea>
               <label className="Label" htmlFor="description">Description</label>
             </div>
@@ -89,7 +111,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-        onNewNote: (title, description, notebook_id, token) => dispatch(actions.post(title, description, notebook_id, token))
+        onNewNote: (title, description, notebook_id, token) => dispatch(actions.post(title, description, notebook_id, token)),
+        onUpdateNote: (id, title, description, notebook_id, token) => dispatch(actions.update(id, title, description, notebook_id, token))
   };
 };
 

@@ -27,7 +27,6 @@ const noteFail = (state, action) => {
 const postNoteStart = (state, action) => {
   return updateObject(state, {
         error: null, loading: true,
-        submitted: true
   });
 };
 

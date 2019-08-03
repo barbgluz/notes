@@ -8,3 +8,6 @@ export {
 export {
   notebook
 } from './notebook';
+export {
+  note
+} from './note';

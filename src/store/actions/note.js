@@ -69,13 +69,13 @@ const removeNoteStart = (state, action) => {
 
 const removeNoteSuccess = (state, action) => {
   return {
-    type: actionTypes.UPDATE_NOTE_SUCCESS
+    type: actionTypes.REMOVE_NOTE_SUCCESS
   };
 };
 
 const removeNoteFail = (error) => {
   return {
-    type: actionTypes.UPDATE_NOTE_FAIL,
+    type: actionTypes.REMOVE_NOTE_FAIL,
     error: error
   };
 }

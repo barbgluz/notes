@@ -10,7 +10,8 @@ export {
 export {
   notebook,
   notebookPost,
-  notebookUpdate
+  notebookUpdate,
+  notebookRemove
 } from './notebook';
 export {
   note,

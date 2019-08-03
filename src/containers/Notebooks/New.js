@@ -18,16 +18,15 @@ class NewNotebook extends Component {
       }
     }
 
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    if(this.props.location.state.notebook) {
+    if(this.props.location.state) {
       let notebook = {
-        id: this.props.location.state.notebook.id,
-        title: this.props.location.state.notebook.title
+        id: this.props.location.state.notebook_id,
+        title: this.props.location.state.title
       }
 
       this.setState({notebookForm: notebook})
@@ -61,13 +60,6 @@ class NewNotebook extends Component {
       <div>
         <div className={classes.Title}>
           <h1>New Notebook</h1>
-            <Link to={{
-                      pathname: (this.props.match.params.id + "/edit"),
-                      state: { notebook_id: this.props.location.state.notebook_id,
-                               note: this.props.note }
-              }}>
-              <button className={classes.Btn}>Edit</button>
-            </Link>
         </div>
 
         <div className="Content">

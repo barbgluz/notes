@@ -67,7 +67,7 @@ class Notebook extends Component {
             <Link to={{
               pathname: (this.props.match.params.id + "/edit"),
               state: {notebook_id: this.state.id,
-                      title: this.state.title}
+                      title: this.state.notebookTitle}
               }}>
               <button className={classes.Btn}>Edit</button>
             </Link>

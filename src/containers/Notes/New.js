@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
@@ -16,7 +17,8 @@ class Note extends Component {
         description: "",
         notebook_id: this.props.location.state.notebook_id,
         id: null
-      }
+      },
+      submitted: false
     }
 
 
@@ -32,6 +34,7 @@ class Note extends Component {
       }
       this.setState({noteForm: note});
     }
+
   }
 
   handleSubmit(event) {
@@ -49,6 +52,10 @@ class Note extends Component {
                               this.state.noteForm.notebook_id,
                               this.props.token);
     }
+    if(this.props.submitted) {
+      this.setState({submitted: true});
+    }
+
   }
 
   handleChange(event) {
@@ -61,8 +68,17 @@ class Note extends Component {
   }
 
   render() {
+    let redirect = <Redirect
+      to={{pathname: "/notebook/" + this.props.location.state.notebook_id,
+           state: {notebook_title: this.props.location.state.notebook_title}}}
+    />
+    if(!this.state.submitted) {
+      redirect = null;
+    }
+
     return(
       <div>
+        {redirect}
         <div className={classes.Title}>
           <h1>New Note</h1>
         </div>
@@ -106,6 +122,7 @@ class Note extends Component {
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
+    submitted: state.note
   };
 }
 

@@ -32,13 +32,14 @@ const postNotebookSuccess = (state, action) => {
   return updateObject(state, {
     notebook: action.notebook,
     error: null,
+    submitted: true
   });
 };
 
 const postNotebookFail = (state, action) => {
   return updateObject(state, {
       error: action.error,
-      loading: false
+      loading: false,
     });
   };
 
@@ -49,6 +50,7 @@ const updateNotebookStart = (state, action) => {
 const updateNotebookSuccess = (state, action) => {
   return updateObject(state, {
     error: null,
+    submitted: true
   });
 };
 
@@ -66,6 +68,7 @@ const removeNotebookStart = (state, action) => {
 const removeNotebookSuccess = (state, action) => {
   return updateObject(state, {
     error: null,
+    submitted: true
   });
 };
 

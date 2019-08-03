@@ -25,20 +25,23 @@ const noteFail = (state, action) => {
   };
 
 const postNoteStart = (state, action) => {
-  return updateObject(state, { error: null, loading: true  });
+  return updateObject(state, {
+        error: null, loading: true,
+  });
 };
 
 const postNoteSuccess = (state, action) => {
   return updateObject(state, {
-    note: action.note,
     error: null,
+    submitted: true
   });
 };
 
 const postNoteFail = (state, action) => {
   return updateObject(state, {
       error: action.error,
-      loading: false
+      loading: false,
+      submitted: false
     });
   };
 
@@ -49,6 +52,7 @@ const updateNoteStart = (state, action) => {
 const updateNoteSuccess = (state, action) => {
   return updateObject(state, {
     error: null,
+    submitted: true
   });
 };
 
@@ -66,6 +70,7 @@ const removeNoteStart = (state, action) => {
 const removeNoteSuccess = (state, action) => {
   return updateObject(state, {
     error: null,
+    submitted: true
   });
 };
 

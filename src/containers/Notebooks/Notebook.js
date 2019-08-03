@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import NoteItem from '../../components/NoteItem/NoteItem';
@@ -15,8 +15,10 @@ class Notebook extends Component {
 
     this.state = {
       id: this.props.match.params.id,
-      title: this.props.location.state.title
+      notebookTitle: this.props.location.state.notebook_title,
+      submitted: false
     }
+
 
     this.deleteNotebook = this.deleteNotebook.bind(this);
   }
@@ -27,6 +29,10 @@ class Notebook extends Component {
 
   deleteNotebook() {
     this.props.onDeleteNotebook(this.props.token, this.props.match.params.id);
+
+    if(this.props.submitted) {
+      this.setState({submitted: true});
+    }
   }
 
 
@@ -43,27 +49,36 @@ class Notebook extends Component {
             description={notebook.description}
             date={notebook.created_at}
             notebook_id={this.state.id}
+            notebook_title={this.state.notebookTitle}
             id={notebook.id} />
           )
       })
     }
 
+    let redirect = <Redirect to="/" />
+    if(!this.state.submitted) {
+      redirect = null;
+    }
+
     return(
       <div>
+        {redirect}
         <div className={classes.Title + " " + styles.Title}>
-          <h1>{this.state.title}</h1>
+          <h1>{this.state.notebookTitle}</h1>
 
           <Link to={{
             pathname: "/note/new",
-            state: {notebook_id: this.state.id}
+            state: {notebook_id: this.state.id,
+                    notebook_title: this.props.location.state.notebook_title}
             }}
             >
             <button className={styles.Btn}>New Note</button>
           </Link>
 
             <Link to={{
-                      pathname: (this.props.match.params.id + "/edit"),
-                      state: { notebook: this.state }
+              pathname: (this.props.match.params.id + "/edit"),
+              state: {notebook_id: this.state.id,
+                      title: this.state.notebookTitle}
               }}>
               <button className={classes.Btn}>Edit</button>
             </Link>
@@ -85,6 +100,7 @@ const mapStateToProps = state => {
   return {
     notebook: state.notebook.notes,
     token: state.auth.token,
+    submitted: state.note.submitted
   };
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import classes from '../../containers/Layout/Layout.module.css';
@@ -15,19 +15,19 @@ class NewNotebook extends Component {
       notebookForm: {
         title: "",
         id: null
-      }
+      },
+      submitted: false
     }
-
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    if(this.props.location.state.notebook) {
+    if(this.props.location.state) {
       let notebook = {
-        id: this.props.location.state.notebook.id,
-        title: this.props.location.state.notebook.title
+        id: this.props.location.state.notebook_id,
+        title: this.props.location.state.title
       }
 
       this.setState({notebookForm: notebook})
@@ -45,6 +45,9 @@ class NewNotebook extends Component {
                               this.state.notebookForm.title,
                               this.props.token);
     }
+    if(this.props.submitted) {
+      this.setState({submitted: true});
+    }
   }
 
   handleChange(event) {
@@ -57,17 +60,16 @@ class NewNotebook extends Component {
   }
 
   render() {
+    let redirect = <Redirect to="/" />
+    if(!this.state.submitted) {
+      redirect = null;
+    }
+
     return(
       <div>
+        {redirect}
         <div className={classes.Title}>
           <h1>New Notebook</h1>
-            <Link to={{
-                      pathname: (this.props.match.params.id + "/edit"),
-                      state: { notebook_id: this.props.location.state.notebook_id,
-                               note: this.props.note }
-              }}>
-              <button className={classes.Btn}>Edit</button>
-            </Link>
         </div>
 
         <div className="Content">
@@ -97,6 +99,7 @@ class NewNotebook extends Component {
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
+    submitted: state.notebook.submitted
   };
 }
 

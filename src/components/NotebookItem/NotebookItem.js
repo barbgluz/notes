@@ -9,10 +9,10 @@ const notebookItem = (props) => {
     <Link
       to={{
         pathname: ("/notebook/" + props.id ),
-        state: {title: props.title}
+        state: {notebook_title: props.notebook_title}
         }}
       className={classes.NotebookItem}>
-      <h3 className={classes.Title}>{props.title}</h3>
+      <h3 className={classes.Title}>{props.notebook_title}</h3>
       <p className={classes.Notes}>8 Notas</p>
     </Link>
     );

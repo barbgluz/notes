@@ -14,7 +14,8 @@ const noteItem = (props) => {
     <div className={classes.NotebookItem + ' ' + styles.Item }>
       <Link to={{
                 pathname:"/note/" + props.id,
-                state: { notebook_id: props.notebook_id }
+                state: { notebook_id: props.notebook_id,
+                         notebook_title: props.notebook_title}
                 }}>
         <h3 className={classes.Title + ' ' + styles.Title }>{props.title}</h3>
       </Link>

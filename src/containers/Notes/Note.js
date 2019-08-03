@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import classes from '../../containers/Layout/Layout.module.css';
@@ -11,6 +11,10 @@ class Note extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      submitted: false
+    }
+
     this.deleteNote = this.deleteNote.bind(this);
   }
 
@@ -20,6 +24,10 @@ class Note extends Component {
 
   deleteNote() {
     this.props.onDeleteNote(this.props.token, this.props.match.params.id);
+
+    if(this.props.submitted) {
+      this.setState({submitted: true});
+    }
   }
 
   render() {
@@ -34,6 +42,8 @@ class Note extends Component {
             <Link to={{
                       pathname: (this.props.match.params.id + "/edit"),
                       state: { notebook_id: this.props.location.state.notebook_id,
+                               title: this.props.location.state.title,
+                               notebook_title: this.props.location.state.notebook_title,
                                note: this.props.note }
               }}>
               <button className={classes.Btn}>Edit</button>
@@ -53,8 +63,14 @@ class Note extends Component {
         );
     }
 
+    let redirect = <Redirect to="/" />
+    if(!this.state.submitted) {
+      redirect = null;
+    }
+
     return(
       <div>
+        {redirect}
         {note}
       </div>
       );
@@ -65,6 +81,7 @@ const mapStateToProps = state => {
   return {
     note: state.note.note,
     token: state.auth.token,
+    submitted: state.note.submitted
   };
 }
 

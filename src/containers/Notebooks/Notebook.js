@@ -66,6 +66,7 @@ class Notebook extends Component {
         <div className={classes.Title + " " + styles.Title}>
           <h1>{this.state.notebookTitle}</h1>
 
+          <div className={styles.Links}>
           <Link to={{
             pathname: "/note/new",
             state: {notebook_id: this.state.id,
@@ -86,6 +87,7 @@ class Notebook extends Component {
             <button
               className={classes.Btn}
               onClick={this.deleteNotebook}>Delete</button>
+          </div>
           </div>
 
         <div className={classes.Notebooks}>

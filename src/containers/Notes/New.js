@@ -1,9 +1,64 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 import classes from '../../containers/Layout/Layout.module.css';
 import '../../styles/form.css';
 
-class Notes extends Component {
+class Note extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      noteForm: {
+        title: "",
+        description: "",
+        notebook_id: this.props.location.state.notebook_id,
+        id: null
+      }
+    }
+
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if(this.props.location.state.note) {
+      let note = {
+        ...this.props.location.state.note,
+        notebook_id: this.props.location.state.notebook_id
+      }
+      this.setState({noteForm: note});
+    }
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    if(!this.state.noteForm.id) {
+      this.props.onNewNote(this.state.noteForm.title,
+                           this.state.noteForm.description,
+                           this.state.noteForm.notebook_id,
+                           this.props.token);
+    } else {
+      this.props.onUpdateNote(this.state.noteForm.id,
+                              this.state.noteForm.title,
+                              this.state.noteForm.description,
+                              this.state.noteForm.notebook_id,
+                              this.props.token);
+    }
+  }
+
+  handleChange(event) {
+    let key = event.target.id;
+    let form = {...this.state.noteForm};
+
+    form[key] = event.target.value;
+
+    this.setState({noteForm: form});
+  }
 
   render() {
     return(
@@ -19,6 +74,8 @@ class Notes extends Component {
                 className="Input"
                 type="text"
                 id="title"
+                onChange={this.handleChange}
+                value={this.state.noteForm.title}
                 required />
               <label className="Label" htmlFor="title">Title</label>
             </div>
@@ -28,12 +85,16 @@ class Notes extends Component {
                 className="Textarea"
                 id="description"
                 name="description"
+                onChange={this.handleChange}
                 cols="30" rows="10"
+                value={this.state.noteForm.description}
                 required></textarea>
               <label className="Label" htmlFor="description">Description</label>
             </div>
 
-            <button className="Btn">Save</button>
+            <button
+              className="Btn"
+              onClick={this.handleSubmit}>Save</button>
 
           </form>
         </div>
@@ -42,4 +103,17 @@ class Notes extends Component {
   }
 }
 
-export default Notes;
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token,
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+        onNewNote: (title, description, notebook_id, token) => dispatch(actions.post(title, description, notebook_id, token)),
+        onUpdateNote: (id, title, description, notebook_id, token) => dispatch(actions.update(id, title, description, notebook_id, token))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Note);

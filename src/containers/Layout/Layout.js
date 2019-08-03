@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
@@ -29,12 +29,15 @@ class Layout extends Component {
             <Sidebar />
           </div>
 
-          <div className={classes.MainContent}>
-            <Route path="/note/new" exact component={NewNote} />
-            <Route path="/note" exact component={Note} />
-            <Route path="/notebook/:id" exact component={Notebook} />
-            <Route path="/" exact component={Home} />
-          </div>
+          <main className={classes.MainContent}>
+            <Switch>
+              <Route path="/note/:id/edit" exact component={NewNote} />
+              <Route path="/note/new" exact component={NewNote} />
+              <Route path="/note/:id" exact component={Note} />
+              <Route path="/notebook/:id" exact component={Notebook} />
+              <Route path="/" exact component={Home} />
+            </Switch>
+          </main>
         </div>
       );
     }

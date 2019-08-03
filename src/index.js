@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 import authReducer from './store/reducers/auth';
 import notebooksReducer from './store/reducers/notebooks';
 import notebookReducer from './store/reducers/notebook';
+import noteReducer from './store/reducers/note';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   notebooks: notebooksReducer,
   notebook: notebookReducer,
+  note: noteReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(

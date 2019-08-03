@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import classes from '../NotebookItem/NotebookItem.module.css';
 import styles from './NoteItem.module.css';
@@ -11,7 +12,12 @@ const noteItem = (props) => {
 
   return(
     <div className={classes.NotebookItem + ' ' + styles.Item }>
-      <h3 className={classes.Title + ' ' + styles.Title }>{props.title}</h3>
+      <Link to={{
+                pathname:"/note/" + props.id,
+                state: { notebook_id: props.notebook_id }
+                }}>
+        <h3 className={classes.Title + ' ' + styles.Title }>{props.title}</h3>
+      </Link>
       <hr className={styles.Line} />
       <p className={classes.Notes + ' ' + styles.Description}>{props.description}</p>
       <div className={styles.Footer}>

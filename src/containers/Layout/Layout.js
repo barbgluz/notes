@@ -39,6 +39,7 @@ class Layout extends Component {
             <Switch>
               <Route path="/note/:id/edit" exact component={NewNote} />
               <Route path="/note/new" exact component={NewNote} />
+              <Route path="/notebook/:id/edit" exact component={NewNotebook} />
               <Route path="/notebook/new" exact component={NewNotebook} />
               <Route path="/note/:id" exact component={Note} />
               <Route path="/notebook/:id" exact component={Notebook} />

@@ -40,6 +40,26 @@ const postNotebookFail = (error) => {
   };
 }
 
+const updateNotebookStart = (state, action) => {
+  return {
+    type: actionTypes.UPDATE_NOTEBOOK_START
+  };
+};
+
+
+const updateNotebookSuccess = (state, action) => {
+  return {
+    type: actionTypes.UPDATE_NOTEBOOK_SUCCESS
+  };
+};
+
+const updateNotebookFail = (error) => {
+  return {
+    type: actionTypes.UPDATE_NOTEBOOK_FAIL,
+    error: error
+  };
+}
+
 
 export const notebook = (token, id) => {
   return dispatch => {
@@ -83,3 +103,25 @@ export const notebookPost = (title, token) => {
   };
 };
 
+export const notebookUpdate = (id, title, token) => {
+  return dispatch => {
+    dispatch(updateNotebookStart());
+
+    const notebookData = {
+      name: title
+    }
+
+    API.put(('/notebooks/' + id), notebookData, {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    })
+      .then( response => {
+        dispatch(updateNotebookSuccess())
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(updateNotebookFail(err));
+      })
+  };
+};

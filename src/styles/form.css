@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .Form {
   display: flex;
   flex-direction: column;

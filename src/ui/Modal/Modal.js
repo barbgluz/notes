@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './Modal.module.css';
 
 const modal = (props) => (
-  <div>
+  <div aria-modal="true">
     <div
       className={classes.ModalContainer}
       onClick={props.hideModal}

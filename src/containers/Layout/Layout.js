@@ -5,7 +5,7 @@ import * as actions from '../../store/actions/index';
 
 import Auth from '../Auth/Auth';
 import Logout from '../Auth/Logout/Logout';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import Navbar from '../../components/Navbar/Navbar';
 import Home from '../../components/Home/Home';
 import Note from '../Notes/Note';
 import Notebook from '../Notebooks/Notebook';
@@ -31,8 +31,8 @@ class Layout extends Component {
     if(this.props.isAuthenticated) {
       view = (
         <div className={classes.Container}>
-          <div className={classes.Sidebar}>
-            <Sidebar />
+          <div className={classes.Navbar}>
+            <Navbar />
           </div>
 
           <main className={classes.MainContent}>

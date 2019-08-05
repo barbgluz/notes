@@ -13,7 +13,6 @@ const notebookItem = (props) => {
         }}
       className={classes.NotebookItem}>
       <h3 className={classes.Title}>{props.notebook_title}</h3>
-      <p className={classes.Notes}>8 Notas</p>
     </Link>
     );
 }

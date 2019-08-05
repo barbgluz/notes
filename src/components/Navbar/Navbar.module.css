@@ -1,18 +1,21 @@
-.Sidebar {
+.Navbar {
   color: #414749;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .Logo {
   font-size: 1.5em;
-  margin-bottom: 3em;
-}
-
-.Logout {
-  font-size: .7em;
 }
 
 .Navigation {
   font-size: 18px;
+}
+
+.Navigation > ul {
+  display: flex;
 }
 
 .Item {
@@ -29,15 +32,11 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .Sidebar {
+  .Navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .Logo {
-    margin-bottom: 0;
   }
 
   .Navigation > ul {
@@ -47,10 +46,6 @@
 }
 
 @media screen and (max-width: 600px) {
-  .Logout {
-    display: none;
-  }
-
   .Navigation {
     font-size: 16px;
   }

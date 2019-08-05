@@ -31,11 +31,40 @@ class Auth extends Component {
         },
       },
       signupForm: {
-        name: "",
-        email: "",
-        password: "",
-        passwordConfirm: ""
-      }
+        name: {
+          value: "",
+          errors: {
+            required: "Name is required"
+          }
+        },
+        email: {
+          value: "",
+          errors: {
+            required: "Email is required",
+            invalid: "Email is invalid"
+          }
+        },
+        password: {
+          value: "",
+          errors: {
+            required: "Password is required"
+          }
+        },
+        passwordConfirm: {
+          value: "",
+          errors: {
+            required: "Password confirm is required",
+            match: "Passwords do not match"
+          }
+        },
+      },
+      errors: {
+        name: [],
+        email: [],
+        password: [],
+        passwordConfirm: []
+      },
+      isValid: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -57,6 +86,19 @@ class Auth extends Component {
     let errors;
 
     if(formName === "signupForm") {
+      errors = {
+        name: [],
+        email: [],
+        password: [],
+        passwordConfirm: []
+      };
+
+      if(validate.empty(form.name.value)) errors.name.push(form.name.errors.required)
+      if(validate.empty(form.email.value)) errors.email.push(form.email.errors.required)
+      if(!validate.validEmail(form.email.value)) errors.email.push(form.email.errors.invalid)
+      if(validate.empty(form.password.value)) errors.password.push(form.password.errors.required)
+      if(validate.empty(form.passwordConfirm.value)) errors.passwordConfirm.push(form.passwordConfirm.errors.required)
+      if(!validate.match(form.password.value, form.passwordConfirm.value)) errors.passwordConfirm.push(form.passwordConfirm.errors.match)
 
     } else if(formName === "loginForm") {
       errors = {
@@ -114,6 +156,7 @@ class Auth extends Component {
     if(this.props.form === "signup") {
       form = (<Signup
                 changed={this.handleChange}
+                errors={this.state.errors}
                 submit={this.handleSubmit}/>);
     }
 

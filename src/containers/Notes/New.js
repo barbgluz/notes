@@ -129,7 +129,7 @@ return(
   <div>
     {redirect}
     <div className={classes.Title}>
-      <h1>New Note</h1>
+      <h1>Note</h1>
     </div>
 
     <div className="Content">

@@ -111,7 +111,7 @@ class NewNotebook extends Component {
       <div>
         {redirect}
         <div className={classes.Title}>
-          <h1>New Notebook</h1>
+          <h1>Notebook</h1>
         </div>
 
         <div className="Content">

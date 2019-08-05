@@ -21,6 +21,10 @@ class Login extends Component {
             <label className="Label" htmlFor="email">Email</label>
           </div>
 
+          <div className="Error">
+            <p>{this.props.errors.email}</p>
+          </div>
+
           <div className={classes.InputGroup + " InputGroup"}>
             <input
               className="Input"
@@ -29,6 +33,10 @@ class Login extends Component {
               onChange={this.props.changed}
               required />
             <label className="Label" htmlFor="password">Password</label>
+          </div>
+
+          <div className="Error">
+            <p>{this.props.errors.password}</p>
           </div>
 
           <button

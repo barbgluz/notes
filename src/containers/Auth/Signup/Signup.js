@@ -21,6 +21,10 @@ class Signup extends Component {
             <label className="Label" htmlFor="name">Name</label>
           </div>
 
+          <div className="Error">
+            <p>{this.props.errors.name}</p>
+          </div>
+
           <div className={classes.InputGroup + " InputGroup"}>
             <input
               className="Input"
@@ -29,6 +33,10 @@ class Signup extends Component {
               onChange={this.props.changed}
               required />
             <label className="Label" htmlFor="email">Email</label>
+          </div>
+
+          <div className="Error">
+            <p>{this.props.errors.email}</p>
           </div>
 
           <div className={classes.InputGroup + " InputGroup"}>
@@ -41,6 +49,10 @@ class Signup extends Component {
             <label className="Label" htmlFor="password">Password</label>
           </div>
 
+          <div className="Error">
+            <p>{this.props.errors.password}</p>
+          </div>
+
           <div className={classes.InputGroup + " InputGroup"}>
             <input
               className="Input"
@@ -49,6 +61,10 @@ class Signup extends Component {
               onChange={this.props.changed}
               required />
             <label className="Label" htmlFor="passwordConfirm">Confirm Password</label>
+          </div>
+
+          <div className="Error">
+            <p>{this.props.errors.passwordConfirm}</p>
           </div>
 
           <button

@@ -34,15 +34,6 @@ class NewNotebook extends Component {
   }
 
   componentDidMount() {
-    let notebook = {
-      title: {
-        value: "",
-        errors: {
-          required: "Notebook title is required"
-        }
-      },
-      id: null,
-    }
 
     if(this.props.location.state) {
       let notebook = {
@@ -54,9 +45,10 @@ class NewNotebook extends Component {
         },
         id: this.props.location.state.notebook_id,
       }
+
+      this.setState({notebookForm: notebook})
     }
 
-    this.setState({notebookForm: notebook})
   }
 
   validateForm() {

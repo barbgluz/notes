@@ -4,6 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import NoteItem from '../../components/NoteItem/NoteItem';
+import Modal from '../../ui/Modal/Modal';
+import DeleteConfirmation from '../../components/DeleteConfirmation/DeleteConfirmation';
 
 import classes from '../Notebooks/Notebooks.module.css';
 import styles from '../../containers/Layout/Layout.module.css';
@@ -16,7 +18,8 @@ class Notebook extends Component {
     this.state = {
       id: this.props.match.params.id,
       notebookTitle: this.props.location.state.notebook_title,
-      submitted: false
+      submitted: false,
+      showModal: false
     }
 
 
@@ -35,6 +38,13 @@ class Notebook extends Component {
     }
   }
 
+  showModal = () => {
+    this.setState({showModal: true})
+  }
+
+  hideModal = () => {
+    this.setState({showModal: false})
+  }
 
   render() {
 
@@ -67,35 +77,43 @@ class Notebook extends Component {
           <h1>{this.state.notebookTitle}</h1>
 
           <div className={styles.Links}>
-          <Link to={{
-            pathname: "/note/new",
-            state: {notebook_id: this.state.id,
-                    notebook_title: this.props.location.state.notebook_title}
-            }}
+            <Link to={{
+              pathname: "/note/new",
+              state: {notebook_id: this.state.id,
+              notebook_title: this.props.location.state.notebook_title}
+              }}
             >
-            <button className={styles.Btn}>New Note</button>
-          </Link>
+              <button className={styles.Btn}>New Note</button>
+            </Link>
 
             <Link to={{
               pathname: (this.props.match.params.id + "/edit"),
               state: {notebook_id: this.state.id,
-                      title: this.state.notebookTitle}
+              title: this.state.notebookTitle}
               }}>
               <button className={classes.Btn}>Edit</button>
             </Link>
 
             <button
               className={classes.Btn}
-              onClick={this.deleteNotebook}>Delete</button>
+              onClick={this.showModal}>Delete</button>
           </div>
-          </div>
+
+          <Modal show={this.state.showModal} hideModal={this.hideModal}>
+            <DeleteConfirmation
+              delete={this.deleteNotebook}
+              cancel={this.hideModal}
+            />
+          </Modal>
+
+        </div>
 
         <div className={classes.Notebooks}>
           {notes}
         </div>
       </div>
       );
-  }
+}
 }
 
 const mapStateToProps = state => {

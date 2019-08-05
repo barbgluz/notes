@@ -1,5 +1,5 @@
 .Sidebar {
-  color: #80829e;
+  color: #414749;
 }
 
 .Logo {
@@ -25,7 +25,7 @@
 
 .Item:hover {
   background-color: #edf3fe;
-  color: #528afa;
+  color: #1361ff;
 }
 
 @media screen and (max-width: 1000px) {

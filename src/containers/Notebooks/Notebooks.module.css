@@ -8,3 +8,9 @@
   font-size: 2em;
   color: #272838;
 }
+
+@media screen and (max-width: 865px) {
+  .Notebooks {
+    justify-content: center;
+  }
+}

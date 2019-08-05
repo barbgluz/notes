@@ -10,10 +10,16 @@
   color: #272838;
 }
 
+.Btn:hover {
+  background-color: #528afa;
+}
+
 .Btn {
   background-color: #528afa;
   color: #fff;
   text-align: center;
+  transition: background-color .3s ease-in;
+  background-color: #206aff;
   padding: 15px 25px;
   border-radius: 2em;
   min-width: 123px;
@@ -64,10 +70,12 @@
     height: 100%;
     width: 100%;
     padding: 1em 2em;
+    position: static;
   }
 
   .MainContent {
     width: 100%;
+    margin-left: 0;
   }
 
   .Links {

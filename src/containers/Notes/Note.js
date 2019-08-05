@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
+import Modal from '../../ui/Modal/Modal';
+import DeleteConfirmation from '../../components/DeleteConfirmation/DeleteConfirmation';
+
 import classes from '../../containers/Layout/Layout.module.css';
 import styles from './Note.module.css';
 
@@ -12,7 +15,8 @@ class Note extends Component {
     super(props);
 
     this.state = {
-      submitted: false
+      submitted: false,
+      showModal: false
     }
 
     this.deleteNote = this.deleteNote.bind(this);
@@ -28,6 +32,14 @@ class Note extends Component {
     if(this.props.submitted) {
       this.setState({submitted: true});
     }
+  }
+
+  showModal = () => {
+    this.setState({showModal: true})
+  }
+
+  hideModal = () => {
+    this.setState({showModal: false})
   }
 
   render() {
@@ -52,8 +64,16 @@ class Note extends Component {
             </Link>
 
             <button
-              onClick={this.deleteNote}>Delete</button>
+              onClick={this.showModal}>Delete</button>
           </div>
+
+          <Modal show={this.state.showModal} hideModal={this.hideModal}>
+            <DeleteConfirmation
+              delete={this.deleteNote}
+              cancel={this.hideModal}
+            />
+          </Modal>
+
           </div>
 
           <div className={styles.Content}>

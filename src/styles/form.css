@@ -8,16 +8,16 @@
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin: 1em;
+  margin: 1em 0;
   min-width: 265px;
-  max-width: 765px;
+  max-width: 700px;
 }
 
 .Label {
   position: absolute;
   margin: 1em;
   transition: 0.2s ease all;
-  color: #a4a2ad;
+  color: #555f61;
 }
 
 .Input:focus ~ .Label,
@@ -28,11 +28,11 @@
 .Textarea:not(:empty) ~ .Label
 {
   margin-top: -2em;
-  color: #528afa;
+  color: #1c67ff;
 }
 
 .Input:focus, .Textarea:focus {
-  border: solid 2px #528afa;
+  border: solid 2px #1c67ff;
 }
 
 .Input, .Textarea {
@@ -47,21 +47,27 @@
   resize: none;
 }
 
+.Btn:hover {
+  background-color: #528afa;
+}
+
 .Btn {
+  background-color: #206aff;
+  transition: background-color .3s ease-in;
   cursor: pointer;
   padding: 1em 2em;
   width: 80%;
   border-radius: 5em;
-  background-color: #528afa;
   color: white;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
+  max-width: 700px;
 }
 
 @media screen and (max-width: 768px) {
-  .InputGroup {
+  .InputGroup, .Btn {
     width: 100%;
-    margin: 0;
+    margin: 1em 0;
   }
 }

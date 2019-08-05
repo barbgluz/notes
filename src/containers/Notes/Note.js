@@ -39,6 +39,8 @@ class Note extends Component {
         <div>
           <div className={classes.Title}>
             <h1>{this.props.note.title}</h1>
+
+            <div className={classes.Links}>
             <Link to={{
                       pathname: (this.props.match.params.id + "/edit"),
                       state: { notebook_id: this.props.location.state.notebook_id,
@@ -50,8 +52,8 @@ class Note extends Component {
             </Link>
 
             <button
-              className={classes.Btn}
               onClick={this.deleteNote}>Delete</button>
+          </div>
           </div>
 
           <div className={styles.Content}>

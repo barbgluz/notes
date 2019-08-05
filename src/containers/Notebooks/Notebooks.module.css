@@ -7,5 +7,10 @@
 .Title > h1 {
   font-size: 2em;
   color: #272838;
-  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 865px) {
+  .Notebooks {
+    justify-content: center;
+  }
 }

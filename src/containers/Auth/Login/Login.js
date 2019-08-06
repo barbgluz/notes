@@ -6,6 +6,14 @@ import classes from '../Auth.module.css';
 
 class Login extends Component {
   render() {
+
+    let emailErrors = null;
+    if(this.props.errors.email) {
+      emailErrors = this.props.errors.email.map((error, index) => {
+        return (<p key={index}> {error} </p>)
+      })
+    }
+
     return(
       <div className={classes.Login}>
         <h1 className={classes.FormTitle}>Login</h1>
@@ -22,7 +30,7 @@ class Login extends Component {
           </div>
 
           <div className="Error">
-            <p>{this.props.errors.email}</p>
+            {emailErrors}
           </div>
 
           <div className={classes.InputGroup + " InputGroup"}>

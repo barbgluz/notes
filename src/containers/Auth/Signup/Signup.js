@@ -6,6 +6,21 @@ import classes from '../Auth.module.css';
 
 class Signup extends Component {
   render() {
+
+    let emailErrors = null;
+    if(this.props.errors.email) {
+      emailErrors = this.props.errors.email.map((error, index) => {
+        return (<p key={index}> {error} </p>)
+      })
+    }
+
+    let passwordErrors = null;
+    if(this.props.errors.passwordConfirm) {
+      passwordErrors = this.props.errors.passwordConfirm.map((error, index) => {
+        return (<p key={index}> {error} </p>)
+      })
+    }
+
     return(
       <div className={classes.Signup}>
         <h1 className={classes.FormTitle}>Signup</h1>
@@ -36,7 +51,7 @@ class Signup extends Component {
           </div>
 
           <div className="Error">
-            <p>{this.props.errors.email}</p>
+            {emailErrors}
           </div>
 
           <div className={classes.InputGroup + " InputGroup"}>
@@ -64,7 +79,7 @@ class Signup extends Component {
           </div>
 
           <div className="Error">
-            <p>{this.props.errors.passwordConfirm}</p>
+            {passwordErrors}
           </div>
 
           <button
@@ -76,8 +91,8 @@ class Signup extends Component {
           <p>Already a member? <Link to="/">Log In</Link> </p>
         </div>
       </div>
-    );
-  }
+      );
+}
 }
 
 export default Signup;

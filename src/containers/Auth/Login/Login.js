@@ -9,8 +9,8 @@ class Login extends Component {
 
     let emailErrors = null;
     if(this.props.errors.email) {
-      emailErrors = this.props.errors.email.map(error => {
-        return (<p> {error} </p>)
+      emailErrors = this.props.errors.email.map((error, index) => {
+        return (<p key={index}> {error} </p>)
       })
     }
 

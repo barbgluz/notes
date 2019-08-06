@@ -6,6 +6,7 @@ import * as validate from '../../validation';
 
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
+import Spinner from '../../ui/Spinner/Spinner';
 
 import classes from './Auth.module.css';
 
@@ -127,9 +128,9 @@ class Auth extends Component {
   submitForm(formName) {
     if(formName === "signupForm") {
       this.props.onSignup(this.state.signupForm.name.value,
-                          this.state.signupForm.email.value,
-                          this.state.signupForm.password.value,
-                          this.state.signupForm.passwordConfirm.value);
+        this.state.signupForm.email.value,
+        this.state.signupForm.password.value,
+        this.state.signupForm.passwordConfirm.value);
       this.props.onAuth(this.state.signupForm.email.value, this.state.signupForm.password.value);
     } else if(formName === "loginForm" ) {
       this.props.onAuth(this.state.loginForm.email.value, this.state.loginForm.password.value);
@@ -149,21 +150,25 @@ class Auth extends Component {
 
   render() {
     let form = (<Login
-                  changed={this.handleChange}
-                  errors={this.state.errors}
-                  submit={this.handleSubmit}/>);
+      changed={this.handleChange}
+      errors={this.state.errors}
+      submit={this.handleSubmit}/>);
 
     if(this.props.form === "signup") {
       form = (<Signup
-                changed={this.handleChange}
-                errors={this.state.errors}
-                submit={this.handleSubmit}/>);
+        changed={this.handleChange}
+        errors={this.state.errors}
+        submit={this.handleSubmit}/>);
+    }
+
+    if(this.props.loading) {
+      form = <Spinner />
     }
 
     let authRedirect = null;
     if(this.props.isAuthenticated) {
       authRedirect = <Redirect to="/" />
-    }
+      }
 
     return(
       <div className={classes.Container}>
@@ -182,14 +187,15 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password)),
-        onSignup: (name, email, password, passwordConfirm) => dispatch(actions.signup(name, email, password, passwordConfirm))
+    onAuth: (email, password) => dispatch(actions.auth(email, password)),
+    onSignup: (name, email, password, passwordConfirm) => dispatch(actions.signup(name, email, password, passwordConfirm))
   };
 };
 
 const mapStateToProps = state => {
   return {
-        isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    loading: state.auth.loading
   };
 }
 
